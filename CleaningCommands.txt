@@ -1,0 +1,40 @@
+#Cleaning columns
+
+m=df1[df1["price"]!="?"]["price"].astype(int).mean()
+df1["price"].fillna(m)
+
+def clean(col_name):
+    m=df1[(df1[col_name]!="?")][col_name].astype(int).mean()
+    df1[col_name]=df1[col_name].str.replace("?",str(m))
+    df1[col_name]=df1[col_name].astype(float)
+    return df1
+
+import seaborn as sns
+sns.heatmap(df.corr(),annot=True)
+
+def clean_numerical(column):
+    mean=df[df[column]!="?"][column].astype(float).mean()
+    df[column] = df[column].str.replace("?",str(mean)).astype(float)
+    return df
+
+def clean_categorical(column):
+    mode=df[df[column]!="?"][column].mode()
+    df[column] = df[column].str.replace("?",str(mean))
+    return df
+
+ok = pd.Series(abs(model.coef_), index = cols)
+ok.sort_values(ascending=False).plot(kind="bar")
+
+newdf.loc[newdf.loan_status == 'Charged Off', 'loan_outcome'] = 1 
+
+newdf.loc[newdf.loan_status == 'Default', 'loan_outcome'] = 1
+
+newdf.loc[newdf.loan_status == 'Fully Paid', 'loan_outcome'] = 0
+
+newdf.loc[newdf.loan_status == 'Does not meet the credit policy. Status:Fully Paid','loan_outcome'] = 0
+
+newdf.loc[newdf.loan_status == 'Does not meet the credit policy. Status:Charged Off','loan_outcome'] = 1
+
+newdf["loan_outcome"].value_counts()
+
+df['SOC_NAME'] = df['SOC_NAME'].fillna(df['SOC_NAME'].mode()[0])
